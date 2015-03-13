@@ -1,0 +1,28 @@
+{
+  "name": "log-driver",
+  "version": "0.0.0",
+  "description": "A streaming logging module for node and the web; written in ES6",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/creatorrr/log-driver.git"
+  },
+  "keywords": [
+    "logging",
+    "logger",
+    "log",
+    "streams",
+    "streaming",
+    "pipe",
+    "es6"
+  ],
+  "author": "Diwank Singh <diwank.singh@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/creatorrr/log-driver/issues"
+  },
+  "homepage": "https://github.com/creatorrr/log-driver"
+}
