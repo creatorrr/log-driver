@@ -76,7 +76,7 @@ class Logger extends stream.PassThrough {
   pipe (dest, opts) {
     assign(dest, {
       logger: this,
-      getEntry: () => cloneDeep(this._currentEntry)
+      getCurrentEntry: () => cloneDeep(this._currentEntry)
     });
 
     return super.pipe(dest, opts);

@@ -14,7 +14,7 @@ export default function testLogger ({expect, doesNotThrow, deepEqual, equal, ok,
     testMessage = "the end is nigh",
     testStream = through2.obj(function (chunk, enc, callback) {
       let
-        {name,level,rawLog} = this.getEntry(),
+        {name,level,rawLog} = this.getCurrentEntry(),
         msg = chunk.join('');
 
       // Check this.logger
