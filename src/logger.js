@@ -44,18 +44,18 @@ class Logger extends stream.PassThrough {
     return this._level;
   }
 
-  log (level, msg) {
+  log (level, ...msgs) {
     let
       timestamp = new Date(),
       {name, clientId} = this,
       entry = {
         timestamp, name, clientId, level,
-        rawLog: msg
+        rawLog: msgs
       };
 
     if (this.filter(entry)) {
       this._currentEntry = entry;
-      this.write(msg);
+      this.write(msgs);
     }
 
     return this;

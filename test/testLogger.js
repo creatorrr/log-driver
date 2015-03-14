@@ -14,7 +14,8 @@ export default function testLogger ({expect, doesNotThrow, equal, ok, done}) {
     testMessage = "the end is nigh",
     testStream = through2.obj(function (chunk, enc, callback) {
       let
-        {name,level,rawLog} = this.getEntry();
+        {name,level,rawLog} = this.getEntry(),
+        msg = chunk.join('');
 
       // Check this.logger
       ok(
@@ -30,7 +31,7 @@ export default function testLogger ({expect, doesNotThrow, equal, ok, done}) {
       equal(chunk, rawLog, "unprocessed chunk not equal to rawLog");
 
       // Compare test message to received message
-      equal(chunk, testMessage, "testMessage not passed correctly");
+      equal(msg, testMessage, "testMessage not passed correctly");
 
       // Push sisyphus, push.
       doesNotThrow(() => this.push(chunk));
