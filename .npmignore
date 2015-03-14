@@ -1,12 +1,6 @@
 # .env file
 .env
 
-# Only keep src and dist folders
-**/*.js
-
-!src/**/*.js
-!dist/**/*.js
-
 # Logs
 logs
 *.log
