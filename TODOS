@@ -1,5 +1,5 @@
-  • Add basic logger implementation
   • Add drivers
   • Add tests
   • Add docs
   • Publish
+  • Remove build files from repo
