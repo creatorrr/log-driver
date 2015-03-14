@@ -1,3 +1,8 @@
-  • Add drivers
+  • Add console driver
+  • Add localstorage driver
+  • Add remote driver
+  • Add file driver
+  • Add formatter
+  • Add filter
   • Add docs
   • Publish
