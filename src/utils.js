@@ -1,10 +1,10 @@
 // Utils
 export const
   {assign} = Object,
-  isNode = () => !!( module && module.exports && this.module !== module ),
-  isBrowser = () => !!( !isNode() && window ),
+  isNode = () => !!( typeof module !== 'undefined' && module.exports ),
+  isBrowser = () => !!( !isNode() && typeof window !== 'undefined' ),
 
-  {sessionStorage} = window,
+  sessionStorage = typeof window !== 'undefined' && window.sessionStorage,
   store = sessionStorage && {
     get: key => sessionStorage.getItem(key),
     set: (key, value) => sessionStorage.setItem(key, value) || value

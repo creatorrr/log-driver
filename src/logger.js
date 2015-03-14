@@ -1,6 +1,7 @@
 import stream from "readable-stream";
 import uuid from "uuid";
 import invert from "lodash/object/invert";
+import mapValues from "lodash/object/mapValues";
 
 import { assign, isBrowser, isNode, store } from "./utils";
 
@@ -26,15 +27,12 @@ class Logger extends stream.PassThrough {
       name, clientId
     });
 
-    // Add level enum to Logger
-    assign(Logger, levelMap);
-
     // Set initial level
     this.setLevel(Logger.TRACE);
 
     // Add log level functions
     for (let l in levelMap)
-      this[l.toLower()] = (...args) => this.log(levelMap[l], ...args);
+      this[l.toLowerCase()] = (...args) => this.log(levelMap[l], ...args);
   }
 
   setLevel (newLevel) {
@@ -77,9 +75,13 @@ class Logger extends stream.PassThrough {
   }
 
   static get levelMap () {
-    return invert(["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "SILENT"]);
+    let map = invert(["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "SILENT"]);
+    return mapValues(map, v => +v);
   }
 }
+
+// Add level enum to Logger
+assign(Logger, Logger.levelMap);
 
 export default Logger;
 
