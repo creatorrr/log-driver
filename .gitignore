@@ -6,6 +6,7 @@
 
 !src/**/*.js
 !dist/**/*.js
+!test/**/*.js
 
 # Logs
 logs
