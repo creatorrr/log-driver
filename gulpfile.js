@@ -3,9 +3,9 @@ var fs = require('fs'),
 
     gulp = require('gulp'),
     babel = require('gulp-babel'),
-    sourcemaps = require('gulp-sourcemaps'),
 
     browserify = require('browserify'),
+    babelify = require('babelify'),
     envify = require('envify/custom'),
     exorcist = require('exorcist'),
 
@@ -15,9 +15,7 @@ var fs = require('fs'),
 
 gulp.task('transpile', function () {
   return gulp.src('src/**/*.js')
-    .pipe(sourcemaps.init())
     .pipe(babel())
-    .pipe(sourcemaps.write())
     .pipe(gulp.dest(path.resolve('.')));
 });
 
@@ -48,7 +46,7 @@ gulp.task('dist', function () {
 
       bundle = browserify({
         debug: true
-      });
+      }).transform(babelify);
 
     if (minify)
       bundle.transform(envify({
