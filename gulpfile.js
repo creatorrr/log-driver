@@ -69,7 +69,7 @@ gulp.task('dist', function () {
   }
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', ['transpile'], function () {
   gulp.watch(['src/**/*.js'], ['transpile']);
 });
 
