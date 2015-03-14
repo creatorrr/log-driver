@@ -5,6 +5,9 @@ import mapValues from "lodash/object/mapValues";
 
 import { assign, isBrowser, isNode, store } from "./utils";
 
+const CLIENT_LOG_ID = "__LOG_DRIVER_CLIENT_ID__";
+let CLIENT_ID_CACHE;
+
 class Logger extends stream.PassThrough {
   constructor (name="log", options={}) {
     // Init stream
@@ -16,10 +19,13 @@ class Logger extends stream.PassThrough {
 
       // Initialize client ID
       id = uuid.v4(),
-      clientId = isBrowser() && store ? (
-          store.get(CLIENT_LOG_ID) ||
-          store.set(CLIENT_LOG_ID, id) ||
-          id
+      clientId = isBrowser() ? (
+          store ? (
+            store.get(CLIENT_LOG_ID) ||
+            store.set(CLIENT_LOG_ID, id)
+          ) : (
+            CLIENT_ID_CACHE ||
+            CLIENT_ID_CACHE = id
         ) : null;
 
     // Add properties to stream obj
