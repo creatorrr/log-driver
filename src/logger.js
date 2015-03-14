@@ -4,6 +4,7 @@ import invert from "lodash/object/invert";
 import mapValues from "lodash/object/mapValues";
 import cloneDeep from "lodash/lang/cloneDeep";
 
+import Driver from "./driver";
 import { assign, isBrowser, isNode, store } from "./utils";
 
 const CLIENT_LOG_ID = "__LOG_DRIVER_CLIENT_ID__";
@@ -85,6 +86,10 @@ class Logger extends stream.PassThrough {
   static get levelMap () {
     let map = invert(["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "SILENT"]);
     return mapValues(map, v => +v);
+  }
+
+  static createDriver (...args) {
+    return new Driver(...args);
   }
 }
 

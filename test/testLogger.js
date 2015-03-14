@@ -1,5 +1,6 @@
-import Logger from "../src/logger";
 import through2 from "through2";
+
+import Logger from "../src/logger";
 
 let
   loggerName = "rorschach",
