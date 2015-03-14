@@ -6,7 +6,7 @@ let
   {INFO} = Logger,
   logger = new Logger(loggerName);
 
-export default function testLogger ({expect, doesNotThrow, equal, ok, done}) {
+export default function testLogger ({expect, doesNotThrow, deepEqual, equal, ok, done}) {
   // 8 assertions total
   expect(8);
 
@@ -28,7 +28,7 @@ export default function testLogger ({expect, doesNotThrow, equal, ok, done}) {
       // Check if all props passed correctly
       equal(name, loggerName, "logger name not passed correctly");
       equal(level, INFO, "incorrect current level");
-      equal(chunk, rawLog, "unprocessed chunk not equal to rawLog");
+      deepEqual(chunk, rawLog, "unprocessed chunk not equal to rawLog");
 
       // Compare test message to received message
       equal(msg, testMessage, "testMessage not passed correctly");

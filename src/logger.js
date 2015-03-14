@@ -2,6 +2,7 @@ import stream from "readable-stream";
 import uuid from "uuid";
 import invert from "lodash/object/invert";
 import mapValues from "lodash/object/mapValues";
+import cloneDeep from "lodash/lang/cloneDeep";
 
 import { assign, isBrowser, isNode, store } from "./utils";
 
@@ -25,7 +26,8 @@ class Logger extends stream.PassThrough {
             store.set(CLIENT_LOG_ID, id)
           ) : (
             CLIENT_ID_CACHE ||
-            CLIENT_ID_CACHE = id
+            (_id => CLIENT_ID_CACHE = _id)(id)
+          )
         ) : null;
 
     // Add properties to stream obj
@@ -74,7 +76,7 @@ class Logger extends stream.PassThrough {
   pipe (dest, opts) {
     assign(dest, {
       logger: this,
-      getEntry: () => this._currentEntry
+      getEntry: () => cloneDeep(this._currentEntry)
     });
 
     return super.pipe(dest, opts);
