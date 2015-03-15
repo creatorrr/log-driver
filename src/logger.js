@@ -44,6 +44,10 @@ class Logger extends stream.PassThrough {
       this[l.toLowerCase()] = (...args) => this.log(levelMap[l], ...args);
   }
 
+  get logger () {
+    return this;
+  }
+
   setLevel (newLevel) {
     this._level = newLevel;
     return this;
@@ -51,6 +55,10 @@ class Logger extends stream.PassThrough {
 
   getLevel () {
     return this._level;
+  }
+
+  getCurrentEntry () {
+    return cloneDeep(this._currentEntry);
   }
 
   log (level, ...msgs) {
@@ -74,13 +82,29 @@ class Logger extends stream.PassThrough {
     return level >= this.getLevel();
   }
 
-  pipe (dest, opts) {
-    assign(dest, {
-      logger: this,
-      getCurrentEntry: () => cloneDeep(this._currentEntry)
-    });
+  pipe (destination) {
+    let
+      bindProps = (src, dest) => {
+        let destPipe = dest.pipe;
 
-    return super.pipe(dest, opts);
+        dest.on("pipe", (src) => {
+          assign(dest, {
+            logger: src.logger,
+            getCurrentEntry: src.getCurrentEntry.bind(src)
+          });
+        });
+
+        // Continue binding props down the chain
+        dest.pipe = newDest => {
+          bindProps(dest, newDest);
+          return destPipe.call(dest, newDest);
+        };
+      };
+
+    // Bind current props
+    bindProps(this, destination);
+
+    return super.pipe(destination);
   }
 
   static get levelMap () {
