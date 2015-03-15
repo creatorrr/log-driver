@@ -6,5 +6,6 @@ module.exports = {
   "testLogger": require("./testLogger"),
   "testDriver": require("./testDriver"),
 
-  "testConsoleDriver": require("./testConsoleDriver")
+  "testConsoleDriver": require("./testConsoleDriver"),
+  "testFileDriver": require("./testFileDriver")
 };
