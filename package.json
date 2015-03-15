@@ -1,6 +1,6 @@
 {
   "name": "log-driver",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A streaming logging module for node and the web; written in ES6",
   "main": "index.js",
   "scripts": {
