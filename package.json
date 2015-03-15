@@ -48,7 +48,6 @@
     "bluebird": "^2.9.14",
     "colors": "^1.0.3",
     "lodash": "^3.5.0",
-    "readable-stream": "^1.0.33",
     "store": "^1.3.17",
     "through2": "^0.6.3",
     "uuid": "^2.0.1"

@@ -1,5 +1,5 @@
 import findKey from "lodash/object/findKey";
-import stream from "readable-stream";
+import stream from "stream";
 import fs from "fs";
 import path from "path";
 

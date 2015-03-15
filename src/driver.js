@@ -1,4 +1,4 @@
-import stream from "readable-stream";
+import stream from "stream";
 import isFunction from "lodash/lang/isFunction";
 
 import { assign } from "./utils";

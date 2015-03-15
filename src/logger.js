@@ -1,4 +1,4 @@
-import stream from "readable-stream";
+import stream from "stream";
 import uuid from "uuid";
 import invert from "lodash/object/invert";
 import mapValues from "lodash/object/mapValues";
