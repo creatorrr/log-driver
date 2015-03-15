@@ -2,7 +2,9 @@ import findKey from "lodash/object/findKey";
 import localStorage from "localStorage";
 
 // Create an in-memory localStorage if window.localStorage unavailable
-global.localStorage = localStorage;
+if (typeof global !== "undefined")
+  global.localStorage = localStorage;
+
 import store from "store";
 
 import Logger from "../logger";

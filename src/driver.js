@@ -1,5 +1,6 @@
 import stream from "stream";
 import isFunction from "lodash/lang/isFunction";
+import isUndefined from "lodash/lang/isUndefined";
 
 import { assign } from "./utils";
 
@@ -34,7 +35,7 @@ class Driver extends stream.Transform {
     }
 
     // If all goes well, push result and carry on
-    this.push(result);
+    !isUndefined(result) && this.push(result);
     callback();
   }
 }
