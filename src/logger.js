@@ -70,16 +70,11 @@ class Logger extends stream.PassThrough {
         rawLog: msgs
       };
 
-    if (this.filter(entry)) {
-      this._currentEntry = entry;
-      this.write(msgs);
-    }
+    // Set props
+    this._currentEntry = entry;
+    this.write(msgs);
 
     return this;
-  }
-
-  filter ({level}) {
-    return level >= this.getLevel();
   }
 
   pipe (destination) {

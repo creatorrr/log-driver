@@ -21,13 +21,13 @@ class Driver extends stream.Transform {
 
   _transform (chunk, enc, callback) {
     let
-      {name, transformer} = this,
+      {name, transformer, logger} = this,
       entry = this.getCurrentEntry(),
       result;
 
     // Run transformer
     try {
-      result = transformer(chunk, entry);
+      result = transformer(chunk, entry, logger);
     }
 
     catch (e) {
