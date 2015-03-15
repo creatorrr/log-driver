@@ -2,6 +2,7 @@ import fs from "fs";
 import mockFs from "mock-fs";
 
 import Logger from "../src/logger";
+import format from "../src/drivers/format";
 import fileDriver from "../src/drivers/file";
 
 let
@@ -22,6 +23,7 @@ export default function testConsoleDriver ({expect, ok, doesNotThrow, done}) {
   doesNotThrow(() => {
     // Add test stream to logger
     logger
+      .pipe(format(void 0, false))
       .pipe(fileDriver(filePath));
 
     ok(fs.existsSync(filePath), "file not being created properly");

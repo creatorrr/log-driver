@@ -1,4 +1,3 @@
-import findKey from "lodash/object/findKey";
 import stream from "stream";
 import fs from "fs";
 import path from "path";
@@ -25,29 +24,15 @@ class FileDriver extends stream.Transform {
     });
   }
 
-  _transform (msgs, encoding, callback) {
+  _transform (msg, encoding, callback) {
     let
-      {level, name, timestamp} = this.getCurrentEntry(),
-
-      {levelMap} = Logger,
-      levelName = findKey(levelMap, (l) => l === level),
-
-      newline = '\n',
-
-      // Prepare log message
-      formattedMsg = [
-        `[${ timestamp }]`,
-        levelName,
-        `(${ name })`,
-        ...msgs,
-        newline
-      ].join(' ');
+      newline = '\n';
 
     // Write to file
-    this.file.write(formattedMsg);
+    this.file.write(msg + newline);
 
     // If all goes well, push result and carry on
-    this.push(msgs);
+    this.push(msg);
     callback();
   }
 }

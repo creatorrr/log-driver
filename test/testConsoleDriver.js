@@ -1,6 +1,7 @@
 import testConsole from "test-console";
 
 import Logger from "../src/logger";
+import format from "../src/drivers/format";
 import consoleDriver from "../src/drivers/console";
 
 let
@@ -17,6 +18,7 @@ export default function testConsoleDriver ({expect, ok, doesNotThrow, done}) {
   doesNotThrow(() => {
     // Add test stream to logger
     logger
+      .pipe(format())
       .pipe(consoleDriver);
 
     // Call log function

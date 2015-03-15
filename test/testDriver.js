@@ -8,7 +8,7 @@ let
   {createDriver} = Logger,
   logger = new Logger(loggerName);
 
-export default function testDriver ({expect, doesNotThrow, deepEqual, equal, ok, done}) {
+export default function testDriver ({expect, doesNotThrow, equal, done}) {
   // 2 assertions total
   expect(2);
 
