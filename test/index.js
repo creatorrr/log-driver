@@ -4,5 +4,7 @@ require("babel/register");
 // Require tests
 module.exports = {
   "testLogger": require("./testLogger"),
-  "testDriver": require("./testDriver")
+  "testDriver": require("./testDriver"),
+
+  "testConsoleDriver": require("./testConsoleDriver")
 };
