@@ -12,8 +12,8 @@ colors.setTheme({
   error: "red"
 });
 
-// A simple console driver that logs formatted rawLog without modifying msgs
-const consoleDriver = Logger.createDriver("console", (msgs, {rawLog, level, name, timestamp}) => {
+// A simple console driver that logs formatted msgs without modifying msgs
+const consoleDriver = Logger.createDriver("console", (msgs, {level, name, timestamp}) => {
   let
     {levelMap} = Logger,
     levelName = findKey(levelMap, (l) => l === level),
@@ -25,7 +25,7 @@ const consoleDriver = Logger.createDriver("console", (msgs, {rawLog, level, name
       colors.grey(`[${ timestamp }]`),
       color.bold(levelName),
       color.underline(`(${ name })`),
-      ...(type === "error" ? rawLog.map(color) : rawLog)
+      ...(type === "error" ? msgs.map(color) : msgs)
     ];
 
   // Log to console

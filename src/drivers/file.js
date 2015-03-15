@@ -6,7 +6,7 @@ import path from "path";
 import Logger from "../logger";
 import { assign } from "../utils";
 
-// A simple file driver that logs formatted rawLog to file without modifying msgs
+// A simple file driver that logs formatted msgs to file without modifying msgs
 class FileDriver extends stream.Transform {
   constructor (filePath, options={}) {
     // Init stream
@@ -27,7 +27,7 @@ class FileDriver extends stream.Transform {
 
   _transform (msgs, encoding, callback) {
     let
-      {rawLog, level, name, timestamp} = this.getCurrentEntry(),
+      {level, name, timestamp} = this.getCurrentEntry(),
 
       {levelMap} = Logger,
       levelName = findKey(levelMap, (l) => l === level),
@@ -39,7 +39,7 @@ class FileDriver extends stream.Transform {
         `[${ timestamp }]`,
         levelName,
         `(${ name })`,
-        ...rawLog,
+        ...msgs,
         newline
       ].join(' ');
 
