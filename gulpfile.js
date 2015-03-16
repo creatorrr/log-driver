@@ -16,7 +16,7 @@ var fs = require('fs'),
 gulp.task('transpile', function () {
   return gulp.src('src/**/*.js')
     .pipe(babel())
-    .pipe(gulp.dest(path.resolve('.')));
+    .pipe(gulp.dest('.'));
 });
 
 gulp.task('dist', function () {
@@ -33,8 +33,8 @@ gulp.task('dist', function () {
   for (var entry in builds) {
     var
       buildName = builds[entry],
-      build = path.resolve(path.join(outDir, buildName+'.js')),
-      minBuild = path.resolve(path.join(outDir, buildName+'.min.js'));
+      build = path.join(outDir, buildName+'.js'),
+      minBuild = path.join(outDir, buildName+'.min.js');
 
     processBundle(entry, build);
     processBundle(entry, minBuild, true);
