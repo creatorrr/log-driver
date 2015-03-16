@@ -1,5 +1,5 @@
 {
-  "name": "log-driver",
+  "name": "logdriver",
   "version": "0.1.0",
   "description": "A streaming logging module for node and the web; written in ES6",
   "main": "index.js",
