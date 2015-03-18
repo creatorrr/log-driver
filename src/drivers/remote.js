@@ -1,4 +1,4 @@
-import through2 from "through2";
+import { PassThrough } from "stream";
 import _ from "highland";
 import request from "request";
 import defaults from "lodash/object/defaults";
@@ -16,7 +16,7 @@ const
     });
 
     let
-      passthrough = through2.obj(),
+      passthrough = new PassThrough({objectMode: true}),
       batcher = _(passthrough).batch(batchLength);
 
     // Start event loop for sending logs
