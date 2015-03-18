@@ -33,11 +33,9 @@ gulp.task('dist', function () {
   for (var entry in builds) {
     var
       buildName = builds[entry],
-      build = path.join(outDir, buildName+'.js'),
-      minBuild = path.join(outDir, buildName+'.min.js');
+      build = path.join(outDir, buildName+'.js');
 
-    processBundle(entry, build);
-    processBundle(entry, minBuild, true);
+    processBundle(entry, build, true);
   }
 
   function processBundle (entry, path, minify) {
