@@ -1,6 +1,5 @@
   • Add docs
   • Add complex test
-  • Transition to readable-stream
   • Remove store and localStorage dependency
   • Remove highland
   • remove uuid

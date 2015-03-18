@@ -1,4 +1,4 @@
-import stream from "stream";
+import PassThrough from "readable-stream/passthrough";
 import uuid from "uuid";
 import invert from "lodash/object/invert";
 import mapValues from "lodash/object/mapValues";
@@ -10,7 +10,7 @@ import { assign, isBrowser, isNode, store } from "./utils";
 const CLIENT_LOG_ID = "__LOG_DRIVER_CLIENT_ID__";
 let CLIENT_ID_CACHE;
 
-class Logger extends stream.PassThrough {
+class Logger extends PassThrough {
   constructor (name="log", options={}) {
     // Init stream
     options.objectMode = true;

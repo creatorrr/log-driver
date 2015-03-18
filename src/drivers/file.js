@@ -1,4 +1,4 @@
-import stream from "stream";
+import Transform from "readable-stream/transform";
 import fs from "fs";
 import path from "path";
 
@@ -6,7 +6,7 @@ import Logger from "../logger";
 import { assign } from "../utils";
 
 // A simple file driver that logs formatted msgs to file without modifying msgs
-class FileDriver extends stream.Transform {
+class FileDriver extends Transform {
   constructor (filePath, options={}) {
     // Init stream
     options.objectMode = true;

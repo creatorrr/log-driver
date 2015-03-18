@@ -1,10 +1,10 @@
-import stream from "stream";
+import Transform from "readable-stream/transform";
 import isFunction from "lodash/lang/isFunction";
 import isUndefined from "lodash/lang/isUndefined";
 
 import { assign } from "./utils";
 
-class Driver extends stream.Transform {
+class Driver extends Transform {
   constructor (name, transformer, options={}) {
     // Init stream
     options.objectMode = true;

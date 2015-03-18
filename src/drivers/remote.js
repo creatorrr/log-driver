@@ -1,4 +1,4 @@
-import { PassThrough } from "stream";
+import PassThrough from "readable-stream/passthrough";
 import _ from "highland";
 import request from "request";
 import defaults from "lodash/object/defaults";
