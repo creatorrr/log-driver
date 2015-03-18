@@ -13,6 +13,14 @@ export const
     set: (key, value) => localStorage.setItem(key, JSON.stringify(value)) || value
   },
 
+  uuid = () => "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
+    let
+      r = (Math.random() * 16 | 0),
+      v = c === 'x' ? r : (r & 0x3|0x8);
+
+    return v.toString(16);
+  }),
+
   batch = (stream, batchLength) => {
     let
       batchedStream = new PassThrough({objectMode: true}),

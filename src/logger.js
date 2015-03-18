@@ -1,11 +1,10 @@
 import PassThrough from "readable-stream/passthrough";
-import uuid from "uuid";
 import invert from "lodash/object/invert";
 import mapValues from "lodash/object/mapValues";
 import cloneDeep from "lodash/lang/cloneDeep";
 
 import Driver from "./driver";
-import { assign, isBrowser, isNode, store } from "./utils";
+import { uuid, assign, isBrowser, isNode, store } from "./utils";
 
 const CLIENT_LOG_ID = "__LOG_DRIVER_CLIENT_ID__";
 let CLIENT_ID_CACHE;
@@ -20,7 +19,7 @@ class Logger extends PassThrough {
       {levelMap} = Logger,
 
       // Initialize client ID
-      id = uuid.v4(),
+      id = uuid(),
       clientId = isBrowser() ? (
           store ? (
             store.get(CLIENT_LOG_ID) ||
