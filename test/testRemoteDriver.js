@@ -18,7 +18,7 @@ export default function testRemoteDriver ({expect, ok, deepEqual, doesNotThrow, 
     // Create mock request function
     request = ({body}) => {
       // Test batched response
-      deepEqual(body, [[testMessage]], "value not passed correctly");
+      deepEqual(body, [testMessage], "value not passed correctly");
 
       // All tests done
       done();

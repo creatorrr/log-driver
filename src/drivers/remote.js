@@ -1,10 +1,9 @@
 import PassThrough from "readable-stream/passthrough";
-import _ from "highland";
 import request from "request";
 import defaults from "lodash/object/defaults";
 
 import Logger from "../logger";
-import { assign } from "../utils";
+import { assign, batch } from "../utils";
 
 // A simple localStorage driver that stores logs in localstorage
 const
@@ -17,7 +16,8 @@ const
 
     let
       passthrough = new PassThrough({objectMode: true}),
-      batcher = _(passthrough).batch(batchLength);
+      // batcher = _(passthrough).batch(batchLength);
+      batcher = batch(passthrough, batchLength);
 
     // Start event loop for sending logs
     batcher.on("data", body => {
