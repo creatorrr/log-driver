@@ -59,6 +59,8 @@ gulp.task('dist', function () {
     return (
       bundle
         .add(require.resolve(entry), { entry: true })
+        .exclude("fs")
+        .exclude("path")
         .bundle()
         .on('error', function (e) { console.log(e); })
         .pipe(exorcist(path + '.map'))
