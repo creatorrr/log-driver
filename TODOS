@@ -1,3 +1,7 @@
   • Add docs
   • Add complex test
-  • Slim down builds
+  • Transition to readable-stream
+  • Remove store and localStorage dependency
+  • Remove highland
+  • remove uuid
+  • remove request
