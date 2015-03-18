@@ -1,22 +1,21 @@
 import PassThrough from "readable-stream/passthrough";
-import request from "request";
-import defaults from "lodash/object/defaults";
 
 import Logger from "../logger";
-import { assign, batch } from "../utils";
+import { assign, batch, request } from "../utils";
 
 // A simple localStorage driver that stores logs in localstorage
 const
   remoteDriver = (httpOpts={}, batchLength=50) => {
     // Prepare http options
-    httpOpts = defaults(httpOpts, {
+    httpOpts = assign({
       method: "post",
-      json: true
-    });
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }, httpOpts);
 
     let
       passthrough = new PassThrough({objectMode: true}),
-      // batcher = _(passthrough).batch(batchLength);
       batcher = batch(passthrough, batchLength);
 
     // Start event loop for sending logs

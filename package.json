@@ -49,7 +49,6 @@
   "dependencies": {
     "colors": "^1.0.3",
     "lodash": "^3.5.0",
-    "readable-stream": "^1.0.33",
-    "request": "^2.53.0"
+    "readable-stream": "^1.0.33"
   }
 }

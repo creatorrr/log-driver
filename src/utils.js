@@ -36,5 +36,38 @@ export const
     });
 
     return batchedStream;
-  };
+  },
 
+  request = ({method, url, body, headers, callback}) => {
+    if (isNode()) {
+      let
+        http = require("http"),
+        {parse} = require("url"),
+        opts = assign(parse(url), {
+          method: method.toUpperCase(),
+          headers
+        })
+        req = http.request(opts, callback);
+
+      req.write(body);
+      req.end();
+
+      return req;
+    }
+
+    else {
+      let
+        req = typeof XMLHttpRequest !== "undefined" ?
+          new  XMLHttpRequest :
+          new ActiveXObject("MSXML2.XMLHTTP.3.0");
+
+      req.onreadystatechange = callback;
+
+      req.open(method.toUpperCase(), url, true);
+      for (let header in keys(headers))
+        req.setRequestHeader(header, headers[header]);
+
+      req.send(body);
+      return req;
+    }
+  };
