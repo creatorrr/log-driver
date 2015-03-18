@@ -1,6 +1,5 @@
   • Add docs
   • Add complex test
-  • Remove store and localStorage dependency
   • Remove highland
   • remove uuid
   • remove request

@@ -1,14 +1,7 @@
 import findKey from "lodash/object/findKey";
-import localStorage from "localStorage";
-
-// Create an in-memory localStorage if window.localStorage unavailable
-if (typeof global !== "undefined")
-  global.localStorage = localStorage;
-
-import store from "store";
 
 import Logger from "../logger";
-import { assign } from "../utils";
+import { assign, store } from "../utils";
 
 // A simple localStorage driver that stores logs in localstorage
 const
