@@ -5,7 +5,7 @@ exec 1>&2
 
 # If you want to bypass the tests you may set the hooks.ignoretests flag
 ignoretests=$(git config --bool hooks.ignoretests)
-runtest=$(npm test && npm run build)
+runtest=$(npm test)
 testresult=$?
 
 # Run npm test and raise error on failure, else proceed to commit

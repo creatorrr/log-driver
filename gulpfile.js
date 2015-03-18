@@ -67,8 +67,8 @@ gulp.task('dist', function () {
   }
 });
 
-gulp.task('watch', ['transpile'], function () {
-  gulp.watch(['src/**/*.js'], ['transpile']);
+gulp.task('watch', ['build'], function () {
+  gulp.watch(['src/**/*.js'], ['build']);
 });
 
 gulp.task('build', ['transpile', 'dist']);
