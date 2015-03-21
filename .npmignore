@@ -1,3 +1,6 @@
+# Exclude src files
+src
+
 # .env file
 .env
 
